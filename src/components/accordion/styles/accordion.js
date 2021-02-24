@@ -3,6 +3,11 @@ import styled from 'styled-components';
 
 export const Frame = styled.div`
     margin-bottom: 40px;
+    max-width: 1200px;
+
+    @media (max-width: 600px) {
+        max-width: 600px;
+    }
 `;
 
 export const Container = styled.section`
@@ -42,6 +47,21 @@ export const Header = styled.div`
     user-select: none;
     align-items: center;
     background: #303030;
+    width: 100%;
+    border-box: box-sizing;
+
+    img {
+        filter: brightness(0) invert(1);
+        width: 24px;
+        
+        @media (max-width: 600px) {
+            width: 16px;
+        }
+    }
+    
+    @media (max-width: 600px) {
+        font-size: 16px;
+    }
 `;
 
 export const Body = styled.section`
@@ -53,6 +73,8 @@ export const Body = styled.section`
     user-select: none;
     align-items: center;
     background: #303030;
+    width: 100%;
+    border-box: box-sizing;
 
     @media (max-width: 600px){
         font-size: 16px;
