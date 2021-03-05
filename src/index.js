@@ -4,11 +4,26 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {GlobalStyle} from './globalstyles'
- 
+import {FirebaseContext} from './context/firebase'
+
+
+const config = {
+  apiKey: "AIzaSyBAvR_XkK2Grx7FRABLiqHGIpbXhmeDUgo",
+  authDomain: "netflix-clone-85796.firebaseapp.com",
+  projectId: "netflix-clone-85796",
+  storageBucket: "netflix-clone-85796.appspot.com",
+  messagingSenderId: "74442859189",
+  appId: "1:74442859189:web:cab37c9ebc0d64225c54fc"
+};
+
+// const firebase = window.firebase.initializeApp(config);
+
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStyle/>
-    <App />
+    <FirebaseContext.Provider value={{firebase: window.firebase}}>
+      <GlobalStyle/>
+      <App />
+    </FirebaseContext.Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
