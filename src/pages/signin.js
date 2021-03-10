@@ -7,6 +7,17 @@ export default function Signin(){
     const [emailAddress, setEmailAddress] = useState('')
     const [password, setPassword] = useState('')
 
+    const validatedForm = (event) => {
+        event.preventDefault();
+
+        if (emailAddress && password){
+            handleSignin();
+        } else {
+            console.log('please fill all the information.')
+        }
+
+    }
+
     const handleSignin = (event) => {
         EventTarget.preventDefault();
 
@@ -20,7 +31,7 @@ export default function Signin(){
                 <Form.Title>Sign In</Form.Title>
                 {error && <Form.Error>{error}</Form.Error>}
 
-                <Form.Base onSubmit={handleSignin} method="POST">
+                <Form.Base onSubmit={validatedForm} method="POST">
                     <Form.Input 
                         placeholder="Email Address"
                         value={emailAddress}
