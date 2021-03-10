@@ -1,4 +1,4 @@
-import React from "from";
+import React from "react";
 import {
     Container,
     Input,
@@ -12,7 +12,7 @@ import {
 } from "./style/form";
 
 export default function Form({ children, ...restProps }) {
-    return <Container {...restProps}>children</Container>;
+    return <Container {...restProps}>{children}</Container>;
 }
 
 Form.Base = function FormBase({ children, ...restProps }) {
