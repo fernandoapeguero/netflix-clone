@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Form } from '../components';
 import {HeaderContainer} from '../containers/header'
+import {FooterContainer} from '../containers/footer'
 
 export default function Signin(){
     const [error, setError] = useState('')
@@ -17,6 +18,7 @@ export default function Signin(){
     }
 
     return (
+        <>
         <HeaderContainer>
             <Form>
                 <Form.Title>Sign In</Form.Title>
@@ -32,6 +34,7 @@ export default function Signin(){
                     <Form.Input 
                         type="password"
                         value={password}
+                        autocomplete="off"
                         placeholder="Password"
                         onChange={({target}) => setPassword(target.value)}
                     />
@@ -41,7 +44,7 @@ export default function Signin(){
                     </Form.Submit>
 
                     <Form.Text>
-                        New to Netflix? <Form.Link to="/signin">Sign up now</Form.Link>
+                        New to Netflix? <Form.Link to="/signup">Sign up now</Form.Link>
                     </Form.Text>
 
                     <Form.TextSmall>
@@ -50,5 +53,7 @@ export default function Signin(){
                 </Form.Base>
             </Form>
         </HeaderContainer>
+        <FooterContainer />
+        </>
     )
 }
