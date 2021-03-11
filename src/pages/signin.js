@@ -7,16 +7,7 @@ export default function Signin(){
     const [emailAddress, setEmailAddress] = useState('')
     const [password, setPassword] = useState('')
 
-    const validatedForm = (event) => {
-        event.preventDefault();
-
-        if (emailAddress && password){
-            handleSignin();
-        } else {
-            console.log('please fill all the information.')
-        }
-
-    }
+    const isInvalid = password === '' | emailAddress === '';
 
     const handleSignin = (event) => {
         EventTarget.preventDefault();
@@ -31,7 +22,7 @@ export default function Signin(){
                 <Form.Title>Sign In</Form.Title>
                 {error && <Form.Error>{error}</Form.Error>}
 
-                <Form.Base onSubmit={validatedForm} method="POST">
+                <Form.Base onSubmit={handleSignin} method="POST">
                     <Form.Input 
                         placeholder="Email Address"
                         value={emailAddress}
@@ -45,7 +36,7 @@ export default function Signin(){
                         onChange={({target}) => setPassword(target.value)}
                     />
                     
-                    <Form.Submit disabled={false} type="submit">
+                    <Form.Submit disabled={isInvalid} type="submit">
                         Sign In
                     </Form.Submit>
 
