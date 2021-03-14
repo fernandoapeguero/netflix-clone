@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {GlobalStyle} from './globalstyles'
 import {FirebaseContext} from './context/firebase'
+import firebase from "firebase/app";
 
 
 const config = {
@@ -16,7 +17,7 @@ const config = {
   appId: "1:74442859189:web:cab37c9ebc0d64225c54fc"
 };
 
-// const firebase = window.firebase.initializeApp(config);
+firebase.initializeApp(config);
 
 ReactDOM.render(
   <React.StrictMode>
