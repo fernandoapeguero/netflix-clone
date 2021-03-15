@@ -17,11 +17,12 @@ const config = {
   appId: "1:74442859189:web:cab37c9ebc0d64225c54fc"
 };
 
+
 firebase.initializeApp(config);
 
 ReactDOM.render(
   <React.StrictMode>
-    <FirebaseContext.Provider value={{firebase: window.firebase}}>
+    <FirebaseContext.Provider value={{firebase: firebase}}>
       <GlobalStyle/>
       <App />
     </FirebaseContext.Provider>

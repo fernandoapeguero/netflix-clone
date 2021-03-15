@@ -24,6 +24,12 @@ export const Container = styled.div`
     }
 
     @media (max-width: 1000px){
+        margin: 0 30px;
+    }
+
+`;
+
+export const Link = styled.p`
         color: #fff;
         text-decoration: none;
         margin-right: 30px;
@@ -38,10 +44,6 @@ export const Container = styled.div`
             margin-right: 0;
         }
     }
-`;
-
-export const Link = styled.p`
-
 `;
 
 export const ButtonLink = styled(ReachRouterLink)`
@@ -72,4 +74,18 @@ export const Logo = styled.img`
         height: 45px;
         width: 167px;
     }
+`;
+
+export const Group = styled.div`
+    display: flex;
+    align-items: center;
+
+`;
+
+
+export const Text = styled.p`
+    color: white;
+    font-size: 22px;
+    line-height: normal;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.45)
 `;
