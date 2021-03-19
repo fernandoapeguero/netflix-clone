@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import {GlobalStyle} from './globalstyles'
 import {FirebaseContext} from './context/firebase'
 import firebase from "firebase/app";
-
+import { seedDatabase } from './seed'
 
 const config = {
   apiKey: "AIzaSyBAvR_XkK2Grx7FRABLiqHGIpbXhmeDUgo",
