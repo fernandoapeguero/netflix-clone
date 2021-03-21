@@ -1,16 +1,17 @@
 import React, { useState, useContext, useEffect} from 'react';
-import {Header} from '../components'
+import {Card, Loading , Header} from '../components'
 import * as ROUTES from '../constants/routes'
 import {FirebaseContext} from '../context/firebase';
 import {SelectProfileContainer} from './profiles'
 import {FooterContainer} from './footer'
-import Loading from '../components/loading';
 
-export function BrowseContainer(){
+
+export function BrowseContainer({slides}){
     const [category, setCategory] = useState('series');
     const [profile, setProfile] = useState({});
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
+    const [slideRows, setSliderows] = useState([])
 
     const {firebase} = useContext(FirebaseContext)
 
@@ -24,6 +25,10 @@ export function BrowseContainer(){
             setLoading(false)
         }, 3000);
     })
+
+    useEffect(() => {
+        setSliderows(slides[category])
+    }, [slides, category])
 
     return profile.displayName ? (
         <>
@@ -71,6 +76,26 @@ export function BrowseContainer(){
                 </Header.Feature>
                
             </Header>
+
+            <Card.Group>
+                {slides.map((slideItem) => {
+                    <Card key={`${category}-${slideItem.title.toLowerCase()}`}>
+                        <Card.Title>{slideItem.title}</Card.Title>
+                        <Card.Entities>
+                            {slideItem.data.map((item) => (
+                                <Card.Item key={item.docId} item={item}>
+                                    <Card.Image src={`/images/${category}/${item.genre}/${item.slug}/small.jpg`}/>
+                                    <Card.Meta>
+                                        <Card.Subtitle></Card.Subtitle>
+                                        <Card.Text></Card.Text>
+                                    </Card.Meta>
+                                </Card.Item>
+
+                            ))}
+                        </Card.Entities>
+                    </Card>
+                })}
+            </Card.Group>
             <FooterContainer />
         </>
     ): (<SelectProfileContainer user={user} setProfile={setProfile} />)
