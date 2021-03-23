@@ -74,7 +74,6 @@ export function BrowseContainer({slides}){
                     </Header.Text>
                     <Header.PlayButton>Play</Header.PlayButton>
                 </Header.Feature>
-               
             </Header>
 
             <Card.Group>
