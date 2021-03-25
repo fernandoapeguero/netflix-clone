@@ -8,6 +8,7 @@ import {
     Feature,
     FeatureTitle,
     FeatureClose,
+    FeatureText,
     Maturity,
     Content,
     Meta,
@@ -84,7 +85,7 @@ Card.Feature = function CardFeature({children, category, ...restProps}){
         <Feature src={`/images/${category}/${itemFeature.genre}/${itemFeature.slug}/large.jpg`}>
             <Content>
                 <FeatureTitle>{itemFeature.Title}</FeatureTitle>
-                <Featuretext>{itemFeature.description}</Featuretext>
+                <FeatureText>{itemFeature.description}</FeatureText>
                 <FeatureClose onClick={() => setShowFeature(false)}>
                     <img src="/images/icons/close.png" alt="Close" />
                 </FeatureClose>
