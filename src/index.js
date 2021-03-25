@@ -5,8 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {GlobalStyle} from './globalstyles'
 import {FirebaseContext} from './context/firebase'
-// import firebase from "firebase/app";
-// import { seedDatabase } from './seed'
+import firebase from "firebase/app";
+
 
 const config = {
   apiKey: "AIzaSyBAvR_XkK2Grx7FRABLiqHGIpbXhmeDUgo",
@@ -17,12 +17,11 @@ const config = {
   appId: "1:74442859189:web:cab37c9ebc0d64225c54fc"
 };
 
-const firebase = window.firebase.initializeApp(config);
-
+firebase.initializeApp(config);
 
 ReactDOM.render(
   <React.StrictMode>
-    <FirebaseContext.Provider value={{firebase: window.firebase}}>
+    <FirebaseContext.Provider value={{firebase: firebase}}>
       <GlobalStyle/>
       <App />
     </FirebaseContext.Provider>

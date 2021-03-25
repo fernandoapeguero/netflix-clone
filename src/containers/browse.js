@@ -1,38 +1,38 @@
-import React, { useState, useContext, useEffect} from 'react';
-import {Card, Loading , Header} from '../components'
-import * as ROUTES from '../constants/routes'
-import {FirebaseContext} from '../context/firebase';
-import {SelectProfileContainer} from './profiles'
-import {FooterContainer} from './footer'
+import React, { useState, useEffect, useContext } from 'react';
+import { Card, Loading, Header } from '../components';
+import * as ROUTES from '../constants/routes';
+import { FirebaseContext } from '../context/firebase';
+import { SelectProfileContainer } from './profiles';
+import { FooterContainer } from './footer';
 
-
-export function BrowseContainer({slides}){
+export function BrowseContainer({ slides }) {
     const [category, setCategory] = useState('series');
     const [profile, setProfile] = useState({});
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
-    const [slideRows, setSliderows] = useState([])
-
-    const {firebase} = useContext(FirebaseContext)
-
+    const [slideRows, setSlideRows] = useState([]);
+    
+    const { firebase } = useContext(FirebaseContext);
+    
     const user = {
-        displayName: 'Karl',
-        photoURL: '1'
-    }
-
+        displayName: "Karl",
+        photoURL: "1"
+    };
+    
     useEffect(() => {
         setTimeout(() => {
             setLoading(false)
         }, 3000);
-    })
-
+    }, [user])
+    
     useEffect(() => {
-        setSliderows(slides[category])
-    }, [slides, category])
-
+        setSlideRows(slides[category]);
+    }, [slides, category]);
+    
     return profile.displayName ? (
         <>
         {loading ? <Loading src={user.photoURL} /> : <Loading.ReleaseBody />}
+        
             <Header src="joker1" dontShowOnSmallViewPort>
                 <Header.Frame>
                     <Header.Group>
@@ -49,16 +49,17 @@ export function BrowseContainer({slides}){
                         </Header.Link>
                     </Header.Group>
                     <Header.Group>
-                        <Header.Search search_term={searchTerm} setSearchTerm={setSearchTerm}/>
+                        <Header.Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
                         <Header.Profile>
-                            <Header.Picture src={user.photoURL}/>
+                            <Header.Picture src={user.photoURL} />
                             <Header.Dropdown>
                                 <Header.Group>
-                                    <Header.Picture src={user.photoURL}/>
+                                    <Header.Picture src={user.photoURL} />
                                     <Header.Link>{user.displayName}</Header.Link>
                                 </Header.Group>
                                 <Header.Group>
-                                    <Header.Link onClick={() => firebase.auth().signOut()}>Sign Out</Header.Link>
+                                    <Header.Link onClick={() => firebase.auth().signOut()}>
+                                        Sign out</Header.Link>
                                 </Header.Group>
                             </Header.Dropdown>
                         </Header.Profile>
@@ -75,27 +76,29 @@ export function BrowseContainer({slides}){
                     <Header.PlayButton>Play</Header.PlayButton>
                 </Header.Feature>
             </Header>
-
+            
             <Card.Group>
-                {slides.map((slideItem) => {
+                {slideRows.map((slideItem) => (
                     <Card key={`${category}-${slideItem.title.toLowerCase()}`}>
                         <Card.Title>{slideItem.title}</Card.Title>
                         <Card.Entities>
                             {slideItem.data.map((item) => (
                                 <Card.Item key={item.docId} item={item}>
-                                    <Card.Image src={`/images/${category}/${item.genre}/${item.slug}/small.jpg`}/>
+                                    <Card.Image src={`/images/${category}/${item.genre}/${item.slug}/small.jpg`} />
                                     <Card.Meta>
-                                        <Card.Subtitle></Card.Subtitle>
-                                        <Card.Text></Card.Text>
+                                        <Card.SubTitle>{item.title}</Card.SubTitle>
+                                        <Card.Text>{item.description}</Card.Text>
                                     </Card.Meta>
                                 </Card.Item>
-
                             ))}
                         </Card.Entities>
+                        <Card.Feature category={category}>
+                            <p>I am the feature!</p>
+                        </Card.Feature>
                     </Card>
-                })}
+                ))}
             </Card.Group>
             <FooterContainer />
-        </>
-    ): (<SelectProfileContainer user={user} setProfile={setProfile} />)
+        </>)
+        : (<SelectProfileContainer user={user} setProfile={setProfile} />);
 }
